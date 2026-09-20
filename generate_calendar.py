@@ -32,6 +32,8 @@ def build_filtered_ics():
                 summary = str(event.get('summary', ''))
                 risk = sum((kw in summary) for kw in HIGH_RISK_KEYWORDS)
                 if risk >= 2:
+                    event['summary'] = 'Hooligan Risk'
+                    event['description'] = summary
                     out_cal.add_component(event)
                     seen_events.add(uid)
         except Exception as e:
